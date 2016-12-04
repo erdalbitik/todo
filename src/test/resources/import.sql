@@ -1,0 +1,1 @@
+insert into T_TODO_USER(email, password_hash, name) values ('user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'User Friend')

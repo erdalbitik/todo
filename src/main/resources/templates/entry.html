@@ -1,0 +1,38 @@
+<div layout:decorator="layouts/entry-layout" layout:fragment="content">
+
+	<h4>Add a todo</h4>
+
+	<div>
+		<form th:action="@{|/entry|}" method="post">
+
+			<label> <input type="text" name="text" />
+			</label> <input type="submit" value="Add" />
+		</form>
+	</div>
+
+	<h1>Todo List</h1>
+
+	<div class="card">
+		<ul class="list-group list-group-flush">
+			<li th:each="entry : ${entries}" class="list-group-item">
+				<!--<span ondblclick="makeEditable(this.id)" th:text="${entry.text}" th:id="${'entry' + entryStat.index}" data-type="text" data-pk="1" data-url="/post" data-title="Update Todo"></span>-->
+				<a id="text" class="editable" href="#" data-type="text" data-th-attr="data-url=@{/entry/}+${entry.id}, data-pk=${entry.id}" data-title="Update Todo">[[${entry.text}]]</a>
+
+				<form th:action="@{|/entry/${entry.id}|}" method="post"
+					style="display: inline">
+					<input type="hidden" name="_method" value="Delete" /> <input
+						type="submit" class="btn btn-link" value="Delete" />
+				</form></li>
+		</ul>
+	</div>
+	
+	<script>
+	    $(document).ready(function() {
+	    	$.fn.editable.defaults.mode = 'inline';
+	    	$('.editable').editable();
+	    });
+		
+	
+	</script>
+
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>TODO Login</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/layout.css}" />
+</head>
+
+<body>
+
+	<header class="navbar  navbar-default">
+	    <div class="container">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" th:href="@{/}">TODO Application</a>
+	        </div>
+	    </div>
+	</header>
+
+	<div class="alert-container container">
+		<div th:if="${success}" th:text="#{${success}}" class="show alert alert-success"></div>
+		<div th:if="${error}" th:text="#{${error}}" class="show alert alert-danger"></div>
+	    <div th:if="${param.error}" th:text="#{${session.SPRING_SECURITY_LAST_EXCEPTION.message}}" class="show alert alert-danger"></div>
+	</div>
+	
+	<div class="container" layout:fragment="content"/>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted"><a href="https://github.com/erdalbitik/todo">TODO Application</a> by <a href="https://www.linkedin.com/in/erdalb">Erdal Bitik</a></p>
+      </div>
+    </footer>
+
+</body>
+
+</html>
