@@ -1,1 +1,26 @@
-insert into T_TODO_USER(email, password_hash, name) values ('user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'User Friend')
+DROP TABLE T_TODO_ENTRY IF EXISTS;
+
+DROP TABLE T_TODO_USER_ROLE IF EXISTS;
+
+DROP TABLE T_TODO_USER IF EXISTS;
+
+CREATE TABLE T_TODO_USER (
+  id INTEGER IDENTITY PRIMARY KEY,
+  name VARCHAR(255),
+  email  VARCHAR(255),
+  password_hash  VARCHAR(255)
+);
+
+
+CREATE TABLE T_TODO_USER_ROLE (
+  id INTEGER IDENTITY PRIMARY KEY,
+  role VARCHAR(255),
+  user_id  INTEGER
+);
+
+
+CREATE TABLE T_TODO_ENTRY (
+  id INTEGER IDENTITY PRIMARY KEY,
+  text VARCHAR(1000),
+  user_id  INTEGER
+);
