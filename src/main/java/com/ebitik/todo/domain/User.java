@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -40,21 +39,21 @@ public class User {
 	@NotNull(message="message.user.nameRequired")
 	@Column(name = "NAME", nullable = false, length = 255)
 	private String name;
+	
+	/**
+	 * surname field
+	 * */
+	@NotNull(message="message.user.surnameRequired")
+	@Column(name = "SURNAME", nullable = false, length = 255)
+	private String surname;
 
 	/**
 	 * plain password is stored as MD5 Hash
 	 * */
-	@Column(name = "PASSWORD_HASH", nullable = false, length = 40)
+	@Column(name = "PASSWORD_HASH", nullable = false, length = 255)
 	private String passwordHash;
 	
-	/**
-	 * a transient plain password is used for data transfer
-	 * */
-	//@NotNull(message="message.user.passwordRequired")
-	@Transient
-	private String password;
-
-	public User() { }
+	public User() {}
 
 	public User(long id) { 
 		this.id = id;
@@ -64,10 +63,18 @@ public class User {
 		this.email = email;
 		this.name = name;
 	}
+	
+	public User(Long id, String email, String name, String surname, String passwordHash) {
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.surname = surname;
+		this.passwordHash = passwordHash; 
+	}
 
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + "]";
+		return "User [email=" + email + ", name=" + name + ", surname=" + surname + "]";
 	}
 
 	public Long getId() {
@@ -102,12 +109,12 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 }

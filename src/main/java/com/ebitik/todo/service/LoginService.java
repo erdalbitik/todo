@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ebitik.todo.domain.User;
@@ -31,7 +31,7 @@ public class LoginService {
 	UserService userService;
 	
 	@Autowired
-	MessageDigestPasswordEncoder md5Encoder;
+	PasswordEncoder passwordEncoder;
 	
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
@@ -45,8 +45,8 @@ public class LoginService {
 			throw new UsernameNotFoundException("message.login.usernameNotFound");
 		}
 		
-		boolean passwordValid = md5Encoder.isPasswordValid(user.getPasswordHash(), password, null);
-		if(!passwordValid) {
+		boolean passwordMatch = passwordEncoder.matches(password, user.getPasswordHash());
+		if(!passwordMatch) {
 			throw new BadCredentialsException("message.login.badCredentials");
 		}
 		

@@ -3,8 +3,8 @@ package com.ebitik.todo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -44,9 +44,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	/**
 	 * password encoder will be used by user register and user login
 	 * */
-	@Bean
-	public MessageDigestPasswordEncoder passwordEncoder() {
-		return new Md5PasswordEncoder();
+	@Bean(name="passwordEncoder")
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 }

@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ebitik.todo.config.TodoAppConfig;
 import com.ebitik.todo.domain.User;
 import com.ebitik.todo.service.UserService;
+import com.ebitik.todo.util.SpringUtil;
 
 /**
  * Security Tests
@@ -41,20 +42,18 @@ public class SecurityTest {
 
 	@Before
 	public void init() {
-		//delte user if exist
+		//delete user if exist
 		User user = service.findByEmail("security@gmail.com");
 		if(Objects.nonNull(user)) {
 			service.deleteUser(user);
 		}
 		//create user
-		user = new User("security@gmail.com", "Erdal Bitik");
-		user.setPassword("password");
-		service.addUser(user);
+		user = addNewUser("security@gmail.com", "test");
 		
 		AuthenticationManager authenticationManager = this.context
 				.getBean(AuthenticationManager.class);
 		this.authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken("security@gmail.com", user.getPassword()));
+				new UsernamePasswordAuthenticationToken("security@gmail.com", "test"));
 	}
 
 	@After
@@ -77,6 +76,12 @@ public class SecurityTest {
 	public void authenticated() throws Exception {
 		SecurityContextHolder.getContext().setAuthentication(this.authentication);
 		assertThat("Security").isEqualTo(this.service.secureMethod());
+	}
+	
+	private User addNewUser(String email, String password) {
+		User user = new User(null, email, "Erdal", "Bitik", SpringUtil.getPasswordEncoder().encode(password));
+		service.addUser(user);
+		return user;
 	}
 
 }

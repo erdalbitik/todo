@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -33,9 +32,6 @@ public class UserService {
 	@Autowired
 	UserRoleDao userRoleDao;
 
-	@Autowired
-	MessageDigestPasswordEncoder md5Encoder;
-
 	public User findByEmail(String email) {
 		if(StringUtils.isEmpty(email)) {
 			return null;
@@ -55,10 +51,6 @@ public class UserService {
 		if(Objects.nonNull(orgUser)) {
 			throw new TodoException("message.register.alreadyExist");
 		}
-
-		String password = user.getPassword();
-		String hashedPassword = md5Encoder.encodePassword(password, null);
-		user.setPasswordHash(hashedPassword);
 
 		dao.save(user);
 

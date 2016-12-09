@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ebitik.todo.config.TodoAppConfig;
 import com.ebitik.todo.domain.Entry;
 import com.ebitik.todo.domain.User;
+import com.ebitik.todo.util.SpringUtil;
 
 /**
  * Tests for userdao and Entry Dao
@@ -69,9 +70,7 @@ public class DAOTest {
 	}
 	
 	private User addNewUser(String email) {
-		User user = new User(email, "Erdal Bitik");
-		user.setPassword("test");
-		user.setPasswordHash("test_hash");
+		User user = new User(null, email, "Erdal", "Bitik", SpringUtil.getPasswordEncoder().encode("test"));
 		return userRepository.save(user);
 	}
 	

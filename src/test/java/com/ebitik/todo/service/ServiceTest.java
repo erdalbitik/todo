@@ -18,6 +18,7 @@ import com.ebitik.todo.config.TodoAppConfig;
 import com.ebitik.todo.domain.Entry;
 import com.ebitik.todo.domain.User;
 import com.ebitik.todo.domain.UserRole;
+import com.ebitik.todo.util.SpringUtil;
 
 /**
  * Tests for Service classes
@@ -55,9 +56,7 @@ public class ServiceTest {
 	}
 	
 	private User addNewUser(String email) {
-		User user = new User(email, "Erdal Bitik");
-		user.setPassword("test");
-		user.setPasswordHash("test_hash");
+		User user = new User(null, email, "Erdal", "Bitik", SpringUtil.getPasswordEncoder().encode("test"));
 		userService.addUser(user);
 		return user;
 	}
