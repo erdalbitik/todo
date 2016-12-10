@@ -1,8 +1,7 @@
 package com.ebitik.todo.bean;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.util.StringUtils;
 
 import com.ebitik.todo.domain.User;
@@ -24,23 +23,23 @@ public class UserForm {
 	/**
 	 * email field is used as username
 	 * */
-	@NotNull(message="message.user.emailRequired")
+	@NotBlank(message="message.user.emailRequired")
 	@Email(message="message.user.emailNotValid")
 	private String email;
 
 	/**
 	 * name field can keep some information(name,surname) about user
 	 * */
-	@NotNull(message="message.user.nameRequired")
+	@NotBlank(message="message.user.nameRequired")
 	private String name;
 	
-	@NotNull(message="message.user.surnameRequired")
+	@NotBlank(message="message.user.surnameRequired")
 	private String surname;
 	
 	/**
 	 * a transient plain password
 	 * */
-	@NotNull(message="message.user.passwordRequired")
+	@NotBlank(message="message.user.passwordRequired")
 	private String password;
 
 	public UserForm() { }
