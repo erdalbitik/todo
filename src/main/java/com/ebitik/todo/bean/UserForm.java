@@ -8,7 +8,7 @@ import com.ebitik.todo.domain.User;
 import com.ebitik.todo.util.SpringUtil;
 
 /**
- * User bean. used as data transfer object.
+ * User form bean. used as data transfer object.
  * 
  * @author erdal.bitik
  * */
@@ -16,7 +16,7 @@ import com.ebitik.todo.util.SpringUtil;
 public class UserForm {
 
 	/**
-	 * 
+	 * TODO : ecrypt it
 	 * */
 	private Long id;
 	
@@ -36,11 +36,11 @@ public class UserForm {
 	@NotBlank(message="message.user.surnameRequired")
 	private String surname;
 	
-	/**
-	 * a transient plain password
-	 * */
 	@NotBlank(message="message.user.passwordRequired")
 	private String password;
+	
+	@NotBlank(message="message.user.rePasswordRequired")
+	private String rePassword;
 
 	public UserForm() { }
 	
@@ -96,6 +96,14 @@ public class UserForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRePassword() {
+		return rePassword;
+	}
+
+	public void setRePassword(String rePassword) {
+		this.rePassword = rePassword;
 	}
 
 }

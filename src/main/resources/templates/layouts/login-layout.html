@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>#{login.title}</title>
+	<title th:inline="text">[[#{login.title}]]</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/layout.css}" />
 </head>
@@ -12,7 +12,7 @@
 	<header class="navbar  navbar-default">
 	    <div class="container">
 	        <div class="navbar-header">
-	            <a class="navbar-brand" th:href="@{/}">#{application.title}</a>
+	            <a class="navbar-brand" th:href="@{/}" th:inline="text">[[#{application.title}]]</a>
 	        </div>
 	    </div>
 	</header>
@@ -30,7 +30,7 @@
 
 	<footer class="footer">
       <div class="container">
-        <p class="text-muted"><a href="https://github.com/erdalbitik/todo">#{application.title}</a> by <a href="https://www.linkedin.com/in/erdalb">Erdal Bitik</a></p>
+        <p class="text-muted"><a href="https://github.com/erdalbitik/todo" th:inline="text">[[#{application.title}]]</a> by <a href="https://www.linkedin.com/in/erdalb">Erdal Bitik</a></p>
       </div>
     </footer>
 

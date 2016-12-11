@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>#{entry.title}</title>
+	<title th:inline="text">[[#{entry.title}]]</title>
 	
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
@@ -18,17 +18,17 @@
 	<header class="navbar  navbar-default">
 	    <div class="container">
 	        <div class="navbar-header">
-	            <a class="navbar-brand" href="/">#{application.title}</a>
+	            <a class="navbar-brand" href="/" th:text="#{application.title}"></a>
 	        </div>
 	
 	        <p class="navbar-text navbar-right">
 	            <span th:if="${#httpServletRequest.remoteUser}">
 	            	<span sec:authentication="principal.name" th:title="${#httpServletRequest.remoteUser}"></span>
 	                |
-	                <a th:href="@{/logout}">#{application.logout}</a>
+	                <a th:href="@{/logout}" th:text="#{application.logout}"></a>
 	            </span>
 	            <span th:if="${#httpServletRequest.remoteUser == null}">
-	                <a th:href="@{/login}">#{application.login}</a>
+	                <a th:href="@{/login}" th:text="#{application.login}"></a>
 	            </span>
 	        </p>
 	    </div>
@@ -44,7 +44,7 @@
 	
 	<footer class="footer">
       <div class="container">
-        <p class="text-muted"><a href="https://github.com/erdalbitik/todo">#{application.title}</a> by <a href="https://www.linkedin.com/in/erdalb">Erdal Bitik</a></p>
+        <p class="text-muted"><a href="https://github.com/erdalbitik/todo" th:inline="text">[[#{application.title}]]</a> by <a href="https://www.linkedin.com/in/erdalb">Erdal Bitik</a></p>
       </div>
     </footer>
 

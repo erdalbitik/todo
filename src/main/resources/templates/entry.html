@@ -1,29 +1,33 @@
 <div layout:decorator="layouts/entry-layout" layout:fragment="content">
 
-	<h4>#{entry.addTodo}</h4>
+	<h4 th:text="#{entry.addTodo}"></h4>
 
 	<div>
 		<form th:action="@{|/entry|}" method="post">
 
 			<label> <input type="text" name="text" />
-			</label> <input type="submit" value="#{entry.addTodo}" />
+			</label> <input type="submit" th:value="#{entry.addTodo}" />
 		</form>
 	</div>
 
-	<h1>#{entry.todoList}</h1>
+	<h1 th:text="#{entry.todoList}"></h1>
 
 	<div class="card">
 		<ul class="list-group list-group-flush">
 			<li th:each="entry : ${entries}" class="list-group-item">
 				<!--<span ondblclick="makeEditable(this.id)" th:text="${entry.text}" th:id="${'entry' + entryStat.index}" data-type="text" data-pk="1" data-url="/post" data-title="Update Todo"></span>-->
 				<a id="text" class="editable" href="#" data-type="text" data-th-attr="data-url=@{/entry/}+${entry.id}, data-pk=${entry.id}" data-title="#{entry.updateTodo}">[[${entry.text}]]</a>
-
-				<form th:action="@{|/entry/${entry.id}|}" method="post"
-					style="display: inline">
-					<input type="hidden" name="_method" value="Delete" /> 
-					<input type="submit" class="btn btn-link" value="#{entry.deleteTodo}" />
-				</form></li>
+				
+				<form th:action="@{|/entry/${entry.id}|}" method="post" style="float:right; display: inline">
+					<input type="hidden" name="_method" value="Delete" />
+					<button type="submit" class="btn btn-default btn-sm" th:title="#{entry.deleteTodo}">
+			          <span class="glyphicon glyphicon-remove"></span> 
+			        </button>
+				</form>
+			</li>
 		</ul>
+
+    </div>
 	</div>
 	
 	<script>

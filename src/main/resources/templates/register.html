@@ -8,28 +8,35 @@
 	  </div>
       
       <div class="form-group">
-	    <label class="control-label col-sm-3" for="email">#{register.form.email}</label>
+	    <label class="control-label col-sm-3" for="email" th:text="#{register.form.email}"></label>
 	    <div class="col-sm-6">
 	      <input type="email" id="email" name="email" th:field="*{email}" autofocus="autofocus" />
 	    </div>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label class="control-label col-sm-3" for="password">#{register.form.password}</label>
+	    <label class="control-label col-sm-3" for="password" th:text="#{register.form.password}"></label>
 	    <div class="col-sm-6">
 	      <input type="password" id="password" name="password" th:field="*{password}" />
 	    </div>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label class="control-label col-sm-3" for="name">#{register.form.name}</label>
+	    <label class="control-label col-sm-3" for="rePassword" th:text="#{register.form.rePassword}"></label>
+	    <div class="col-sm-6">
+	      <input type="password" id="rePassword" name="rePassword" th:field="*{rePassword}" />
+	    </div>
+	  </div>
+	  
+	  <div class="form-group">
+	    <label class="control-label col-sm-3" for="name" th:text="#{register.form.name}"></label>
 	    <div class="col-sm-6">
 	      <input type="text" id="name" name="name" th:field="*{name}" />
 	    </div>
 	  </div>
 	  
 	  <div class="form-group">
-	    <label class="control-label col-sm-3" for="surname">#{register.form.surname}</label>
+	    <label class="control-label col-sm-3" for="surname" th:text="#{register.form.surname}"></label>
 	    <div class="col-sm-6">
 	      <input type="text" id="surname" name="surname" th:field="*{surname}" />
 	    </div>
@@ -37,7 +44,7 @@
 	  
 	  <div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-6">
-	      <button type="submit" class="btn btn-default">#{register.form.submit}</button>
+	      <button type="submit" class="btn btn-default" th:text="#{register.form.submit}"></button>
 	    </div>
 	  </div>
       
